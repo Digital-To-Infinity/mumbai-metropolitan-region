@@ -67,3 +67,13 @@
     --foreground: #f8fafc;
   }
 }
+
+@layer base {
+
+  /* Hide Next.js Dev Indicator/Badge */
+  #nextjs-portal, 
+  [data-nextjs-toast-wrapper],
+  .nextjs-static-indicator-base {
+    display: none !important;
+  }
+}
