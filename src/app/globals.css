@@ -1,26 +1,69 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary: #0f172a; /* Deep Navy Blue */
+  --color-secondary: #ffffff;
+  --color-accent: #dc2626; /* Premium Red */
+  --color-saffron: #f97316; /* Saffron for highlights */
+  --color-neutral-light: #f8fafc;
+  --color-neutral-dark: #334155;
+  --color-border: #e2e8f0;
+  
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Poppins', sans-serif;
+
+  --shadow-premium: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@layer base {
+  body {
+    @apply bg-neutral-light text-primary font-sans;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight text-primary;
+  }
+
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-glass rounded-xl;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-2.5 rounded-lg font-semibold transition-all hover:bg-neutral-dark hover:scale-[1.02] active:scale-[0.98] shadow-md;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-white px-6 py-2.5 rounded-lg font-semibold transition-all hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] shadow-md;
+  }
+  
+  .news-label {
+    @apply bg-accent text-white text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-sm;
+  }
+
+  .section-title {
+    @apply text-2xl md:text-3xl font-bold mb-8 relative inline-block;
+  }
+
+  .section-title::after {
+    @apply content-[''] absolute -bottom-2 left-0 w-16 h-1 bg-accent;
+  }
+}
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #020617;
+    --foreground: #f8fafc;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
